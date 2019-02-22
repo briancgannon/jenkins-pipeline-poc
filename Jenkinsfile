@@ -4,9 +4,9 @@ pipeline {
         stage('build') {
             steps {
                 sh """
-                    echo ${SHELL}
-                    pip install --upgrade pip
-                    pip install -r requirements.txt 
+                cd python-docker
+                docker build -t python-docker-dev .
+                docker run --rm -it -p 8080:8080 python-docker-dev
                 """
             }
         }
