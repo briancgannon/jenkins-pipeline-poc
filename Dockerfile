@@ -1,20 +1,15 @@
-#
-# Python Dockerfile
-#
-# https://github.com/dockerfile/python
-#
+FROM python:3.6
 
-# Pull base image.
-FROM dockerfile/ubuntu
+# Create app directory
+WORKDIR /app
 
-# Install Python.
-RUN \
-  apt-get update && \
-  apt-get install -y python python-dev python-pip python-virtualenv && \
-  rm -rf /var/lib/apt/lists/*
+# Install app dependencies
+COPY src/requirements.txt ./
 
-# Define working directory.
-WORKDIR /data
+RUN pip install -r requirements.txt
 
-# Define default command.
-CMD ["bash"]
+# Bundle app source
+COPY src /app
+
+EXPOSE 8080
+CMD [ "python", "server.py" ]
