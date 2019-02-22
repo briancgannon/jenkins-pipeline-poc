@@ -5,8 +5,8 @@ pipeline {
             steps {
                 sh """
                     echo ${SHELL}
-                    pip install --upgrade pip
-                    pip install -r requirements.txt 
+                    sudo pip install --upgrade pip
+                    sudo pip install -r requirements.txt 
                 """
             }
         }
