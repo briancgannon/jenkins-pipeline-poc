@@ -1,12 +1,12 @@
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    agent { dockerfile true }
     stages {
         stage('build') {
             steps {
                 sh """
                     echo ${SHELL}
-                    sudo pip install --upgrade pip
-                    sudo pip install -r requirements.txt 
+                    pip install --upgrade pip
+                    pip install -r requirements.txt 
                 """
             }
         }
